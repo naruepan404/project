@@ -1,0 +1,31 @@
+from std_srvs.srv import Empty, EmptyResponse
+import rospy
+import time
+
+def server_callback(req):
+    time.sleep(2)
+    print("Arrived.")
+    return EmptyResponse()
+
+def go_home():
+    rospy.init_node('go_home')
+    s = rospy.Service('go_home', Empty, server_callback))
+    print("Going to home.")
+    rospy.spin()
+
+def go_to_kitchen():
+    rospy.init_node('go_to_kitchen')
+    s = rospy.Service('go_to_kitchen', Empty, server_callback))
+    print("Going to kitchen.")
+    rospy.spin()
+    
+def stop():
+    rospy.init_node('stop')
+    s = rospy.Service('stop', Empty, server_callback))
+    print("Stop!")
+    return EmptyResponse()
+
+if __name__ == "__main__":
+    go_home()
+    go_to_kitchen()
+    stop()
